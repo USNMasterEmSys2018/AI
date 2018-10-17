@@ -21,7 +21,7 @@ class ploydataset:
 
     def generatedata(self):
         x = self.a
-        self.feature = numpy.random.rand(2)+[2,2]
+        self.feature = numpy.random.rand(2)*2-1
         #self.feature = [0.5,0.5]
         print(self.feature)
         b = numpy.random.rand(self.__n)*2-1 #noise
@@ -31,7 +31,7 @@ class ploydataset:
         self.y = y
 
 def fetchdesentdataset(var: list, dataset):
-    X = numpy.linspace(0,5,101)
+    X = numpy.linspace(-3,3,101)
     X = (numpy.meshgrid(X, X))
     X =  numpy.transpose(X)
     
@@ -58,8 +58,10 @@ def f(feature: list, vari: list, dataset: list):
 def plotfigure(feature: list, var: list, dataset):
     plt.figure(2)
     plt.plot(var[1], dataset,"b*")
-    y = numpy.matmul(feature, var)
+    y = numpy.transpose(numpy.matmul(feature, var))
+    #print(numpy.array(feature).shape)
     plt.plot(var[1], y, "r")
+    plt.show()
     
 def plot3d(var: list, feature: list, dataset, X,J):
     #plotfigure(feature, var, dataset)
